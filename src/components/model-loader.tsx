@@ -300,21 +300,10 @@ function OpenRouterKeyInput({
   onChange: (key: string) => void
   onSave: () => void
 }) {
-  const CLASS_KEY = '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'
-
   return (
-    <div className="space-y-3">
-      <div className="rounded-md border border-amber-300 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-700 p-3 space-y-2">
-        <p className="text-xs font-medium text-amber-800 dark:text-amber-300">LMC 4813 — class key (temporary)</p>
-        <p className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
-          Copy this key and paste it into the field below. This is a shared key with limited credit for class use only. It will be disabled and removed after the session.
-        </p>
-        <code className="block text-xs font-mono bg-amber-100 dark:bg-amber-900/40 rounded px-2 py-1.5 break-all select-all text-amber-900 dark:text-amber-200">
-          {CLASS_KEY}
-        </code>
-      </div>
+    <div className="space-y-2">
       <p className="text-xs text-muted-foreground leading-relaxed">
-        Or bring your own key from{' '}
+        Bring your own key from{' '}
         <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
           openrouter.ai
         </a>
