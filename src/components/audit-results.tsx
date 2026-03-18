@@ -264,25 +264,27 @@ function AnnotationPanel({
 function ExportBar({
   result,
   annotations,
+  exportContext,
 }: {
   result: AnyAuditResult
   annotations: Record<number, Annotation>
+  exportContext?: ExportContext
 }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
     try {
-      await copyMarkdown(result, annotations)
+      await copyMarkdown(result, annotations, exportContext)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
       // Clipboard API unavailable — fall back to download
-      downloadJSON(result, annotations)
+      downloadJSON(result, annotations, exportContext)
     }
   }
 
   const handleDownload = () => {
-    downloadJSON(result, annotations)
+    downloadJSON(result, annotations, exportContext)
   }
 
   return (
@@ -871,7 +873,7 @@ function ValuesResults({ result, systemPrompt }: { result: ValueConcernsResult; 
 
 // ─── Router ────────────────────────────────────────────────────────────────────
 
-export function AuditResults({ result, systemPrompt, metaResult, onMetaAudit, isMetaAuditing }: AuditResultsProps) {
+export function AuditResults({ result, systemPrompt, exportContext, metaResult, onMetaAudit, isMetaAuditing }: AuditResultsProps) {
   // Derive a stable key from the result to reset annotations when result changes
   const resultKey = useMemo(() => JSON.stringify(result.data).slice(0, 100), [result])
   const [annotations, setAnnotations] = useState<Record<number, Annotation>>({})
@@ -926,7 +928,7 @@ export function AuditResults({ result, systemPrompt, metaResult, onMetaAudit, is
         <ValuesResults result={result.data} systemPrompt={systemPrompt} />
       )}
 
-      <ExportBar result={result} annotations={annotations} />
+      <ExportBar result={result} annotations={annotations} exportContext={exportContext} />
     </div>
   )
 }

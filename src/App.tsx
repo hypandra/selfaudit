@@ -236,6 +236,12 @@ function App() {
                       <AuditResults
                         result={auditResult}
                         systemPrompt={currentSystemPrompt}
+                        exportContext={{
+                          inputText: inputText,
+                          prediction: prediction,
+                          postReflection: postReflection,
+                          modelId: selectedModel,
+                        }}
                         metaResult={metaResult}
                         onMetaAudit={handleMetaAudit}
                         isMetaAuditing={isMetaAuditing}
