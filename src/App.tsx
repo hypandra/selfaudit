@@ -7,7 +7,7 @@ import { ComparePane } from '@/components/compare-pane'
 import { ManualChecklist } from '@/components/manual-checklist'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { runAudit, runMetaAudit, type MetaAuditResult, type AnyAuditResult, type AuditType } from '@/lib/audit'
-import { loadModel, isWebGPUAvailable, MODEL_OPTIONS, type EngineStatus } from '@/lib/engine'
+import { loadModel, isWebGPUAvailable, MODEL_OPTIONS, OPENROUTER_MODELS, getOpenRouterKey, type EngineStatus } from '@/lib/engine'
 import { getPromptConfig } from '@/lib/prompts'
 import type { AuditResult } from '@/lib/principles'
 import { ExternalLink } from 'lucide-react'
@@ -30,7 +30,8 @@ function App() {
   const [predictionLocked, setPredictionLocked] = useState(false)
   const [postReflection, setPostReflection] = useState('')
 
-  const isReady = status.state === 'ready'
+  const selectedIsCloud = OPENROUTER_MODELS.some((m) => m.id === selectedModel)
+  const isReady = selectedIsCloud ? !!getOpenRouterKey() : status.state === 'ready'
 
   const handleLoadLocal = useCallback(() => {
     loadModel(selectedModel, setStatus).catch((err) => {
