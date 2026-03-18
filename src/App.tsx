@@ -125,7 +125,7 @@ function App() {
             <TabsList>
               <TabsTrigger value="ai">AI-assisted</TabsTrigger>
               <TabsTrigger value="compare">Compare prompts</TabsTrigger>
-              <TabsTrigger value="manual">Manual checklist</TabsTrigger>
+              <TabsTrigger value="manual">Checklist</TabsTrigger>
             </TabsList>
 
             <TabsContent value="compare" className="mt-4 space-y-6">
