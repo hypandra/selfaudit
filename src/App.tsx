@@ -343,6 +343,18 @@ function App() {
               Principles Audit, use the Meta tab to examine the audit's own quality.
             </p>
             <p>No data collected. No analytics. No server.</p>
+            <p>
+              This tool is{' '}
+              <a
+                href="https://github.com/hypandra/selfaudit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-foreground"
+              >
+                open source
+              </a>
+              .
+            </p>
           </div>
           <p className="pt-2">
             Built by{' '}
