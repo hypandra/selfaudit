@@ -55,8 +55,8 @@ export const LOCAL_MODELS: ModelOption[] = [
 
 export const OPENROUTER_MODELS: ModelOption[] = [
   {
-    id: 'anthropic/claude-sonnet-4-20250514',
-    label: 'Claude Sonnet',
+    id: 'anthropic/claude-sonnet-4.6',
+    label: 'Claude Sonnet 4.6',
     size: 'API',
     contextWindow: 200000,
     description: 'Anthropic. Strong reasoning, excellent structured output.',
