@@ -5,13 +5,12 @@ import { AuditResults } from '@/components/audit-results'
 import { AuditTypeSelector } from '@/components/audit-type-selector'
 import { ComparePane } from '@/components/compare-pane'
 import { ManualChecklist } from '@/components/manual-checklist'
-import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { runAudit, runMetaAudit, type MetaAuditResult, type AnyAuditResult, type AuditType } from '@/lib/audit'
 import { loadModel, isWebGPUAvailable, MODEL_OPTIONS, type EngineStatus } from '@/lib/engine'
 import { getPromptConfig } from '@/lib/prompts'
 import type { AuditResult } from '@/lib/principles'
-import { Eye, Shield, Brain, ExternalLink, Bot, ClipboardList, GitCompare } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 function App() {
   const hasWebGPU = isWebGPUAvailable()
@@ -99,78 +98,34 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="max-w-3xl mx-auto px-4 py-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Self-Audit</h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                AI principles audit that practices what it preaches
-              </p>
-            </div>
-            <a
-              href="https://hypandra.com/ai-principles"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 mt-1"
-            >
-              Hypandra AI Principles
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
-        </div>
+      <header className="max-w-[640px] mx-auto px-5 pt-12 pb-8">
+        <h1 className="font-sans text-lg font-medium tracking-tight">Self-Audit</h1>
+        <p className="text-muted-foreground mt-2 text-[0.9375rem] leading-relaxed">
+          A reflective practice tool for examining how AI-related work aligns with three questions:
+          Can you see how it works? Can you push back? Does it make you think?
+        </p>
+        <p className="text-muted-foreground mt-1 text-[0.8125rem]">
+          <a
+            href="https://hypandra.com/ai-principles"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-foreground inline-flex items-center gap-1"
+          >
+            Hypandra AI Principles
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        </p>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-8 space-y-6">
-        {/* Three dimensions */}
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="space-y-2">
-            <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-              <Eye className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-sm font-medium">Seamfulness</h3>
-            <p className="text-xs text-muted-foreground">
-              Can you see how it works and where it breaks?
-            </p>
-          </div>
-          <div className="space-y-2">
-            <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-              <Shield className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-sm font-medium">Contestability</h3>
-            <p className="text-xs text-muted-foreground">
-              Can you push back, challenge, and repair?
-            </p>
-          </div>
-          <div className="space-y-2">
-            <div className="mx-auto w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-              <Brain className="h-5 w-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-sm font-medium">Productive Difficulty</h3>
-            <p className="text-xs text-muted-foreground">
-              Does it make you think?
-            </p>
-          </div>
-        </div>
-
-        <Separator />
+      <main className="max-w-[640px] mx-auto px-5 pb-16 space-y-8">
 
         {/* Mode selection: AI-assisted or Manual */}
         {hasWebGPU ? (
           <Tabs defaultValue="ai">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="ai" className="flex items-center gap-1">
-                <Bot className="h-3 w-3" />
-                AI Audit
-              </TabsTrigger>
-              <TabsTrigger value="compare" className="flex items-center gap-1">
-                <GitCompare className="h-3 w-3" />
-                Compare
-              </TabsTrigger>
-              <TabsTrigger value="manual" className="flex items-center gap-1">
-                <ClipboardList className="h-3 w-3" />
-                Manual
-              </TabsTrigger>
+            <TabsList>
+              <TabsTrigger value="ai">AI-assisted</TabsTrigger>
+              <TabsTrigger value="compare">Compare prompts</TabsTrigger>
+              <TabsTrigger value="manual">Manual checklist</TabsTrigger>
             </TabsList>
 
             <TabsContent value="compare" className="mt-4 space-y-6">
@@ -325,9 +280,7 @@ function App() {
         )}
 
         {/* Transparency footer */}
-        <Separator />
-        <footer className="text-xs text-muted-foreground pb-8 space-y-3">
-          <p className="font-medium">About this tool</p>
+        <footer className="text-[0.8125rem] text-muted-foreground pt-8 border-t border-border/40 space-y-3">
           <div className="space-y-2 leading-relaxed">
             <p>
               {hasWebGPU
